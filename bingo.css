@@ -1,0 +1,38 @@
+
+
+.cartela_inteira {
+	border: 1px solid black;
+	width: 100%;
+}
+
+.cartela_inteira tr td p {
+	text-align: center;
+}
+
+.celula {
+	width: 40px;
+}
+
+.link_resultados{
+	margin-top: 30px;
+}
+
+/* parte do sorteio */
+
+.executar_sorteio{
+	background-color: #ccc;
+	min-height: 300px;
+}
+
+.num_sorteados{
+	background-color: #eee;
+	min-height: 35px;
+	width: 85%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 25px;
+}
+
+#apagar_btn {
+	margin-top: 30px;
+}
