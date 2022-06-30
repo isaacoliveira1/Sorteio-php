@@ -1,14 +1,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
-		<title>BINGO</title>
+		<title>Sorteio</title>
 		
 
-		<link href="960.min.css" rel="stylesheet" type="text/css" />
-		<link href="bingo.css" rel="stylesheet" type="text/css" />
+		<link href="css/960.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/sorteio.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" />
 
-		<script type="text/javascript" src="jquery-1.11.3.js"></script>
-		<script type="text/javascript" src="bingo.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/sorteio.js"></script>
 
 
 	</head>
@@ -20,35 +21,24 @@
 
 		$id_sorteio = 0;
 
-		//Carregar o último Id de sorteio...
-		//Está sendo utilizado o PDO do php....
 
-		$con = new PDO("mysql:host=localhost;dbname=bingo_bd", "root", "");
-
-		// configuraçôes que estavam em meu localhost
-
-		// db_name = bingo_bd
-		// usuario = root
-		// senha = ''
+		$con = new PDO("mysql:host=localhost;dbname=sorteio", "root", "1234");
 
 		$rs = $con->query("SELECT id_sorteio FROM sorteio");
 		while($row = $rs->fetch(PDO::FETCH_OBJ)){
-			$id_sorteio = $row->id_sorteio . "<br />";
+			$id_sorteio = $row->id_sorteio;
 		}
-
-		//Gera o id do novo sorteio...
-
 		$id_sorteio = $id_sorteio + 1;
 
-		$stmt = $con->prepare("INSERT INTO sorteio(id_sorteio) VALUES(?)");
+		$stmt = $con->prepare("INSERT INTO sorteio( id_sorteio) VALUES( ?)");
 		$stmt->bindParam(1,$id_sorteio);
-		$stmt->execute();
 
+
+		$stmt->execute();
 		?>
 
 		<div class="container_12">
 
-			<h2>Gerando as cartelas</h2>
 
 			<br>
 			<h3>Sorteio de numero : <span id="sorteio_numero"><?php echo $id_sorteio; ?></span></h3>
@@ -133,11 +123,11 @@
 
 
 
+
 				$tal = sprintf("%02s",$t+1);
-				// exibição simples dos numeros via colunas...
 
 				echo "
-					  <div class='grid_4'>
+						<div class='grid_4'>
 						<table class='cartela_inteira cartela_".$tal."'>
 						    	<tr>
 						    		<td>
@@ -182,7 +172,7 @@
 						        </tr>
 						     
 					    </table>
-				   	  </div>
+						</div>
 				      " ;
 					}
 
@@ -200,26 +190,22 @@
 
 		<div class="clear"></div>
 
-		<div class="container_12 executar_sorteio">
+		<div>
 
-			<h2>Executar o sorteio</h2>
-
-			<div>
-				
-				<button id="sortear">Sortear numero</button>
+				<button id="sortear" class="btn btn-success">Sortear numero</button>
 
 				<div class="clear"></div>
-
+				<div class="row">	
+					<div class="col-md-12">
 				<div class="num_sorteados">
 					<h3 id="lista_sorteados"><h3>
 				</div>
-
-				<button id="apagar_btn">Resetar sorteio</button>
+				<button id="apagar_btn" class="btn btn-danger">Resetar sorteio</button>
 
 				<div class="clear"></div>
 
 				<div class="link_resultados">
-					<h3 id=""><a href="resultados.php">Listar sorteios realizados</a><h3>
+					<a href="resultados.php"  class="btn btn-info">Listar sorteios realizados</a>
 				</div>
 
 			</div>

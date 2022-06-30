@@ -114,24 +114,23 @@ function cres(pr1, pr2) {
 
 function verificaGanhador(cartela, resultado){
 
-    //valores das linhas...
+    //Linhas...
     var la = [0,1,2,3,4];
     var lb = [5,6,7,8,9];
     var lc = [10,11,12,13,14];
     var ld = [15,16,17,18,19];
     var le = [20,21,22,23,24];
-    //valores das colunas...
+    //Colunas...
     var ca = [0,5,10,15,20];
     var cb = [1,6,11,16,21];
     var cc = [2,7,12,17,22];
     var cd = [3,8,13,18,23];
     var ce = [4,9,14,19,24];
-    //valores das diagonais...
+    //Diagonais...
     var da = [0,6,12,18,24];
     var db = [20,16,12,8,4];
 
 
-    //Com o número da cartela... é verificado se houve o BINGO
 
     console.log('Resultado da cartela :'+ cartela + ' na celulas :' +  resultado);
 
@@ -139,7 +138,6 @@ function verificaGanhador(cartela, resultado){
         
         var vetCres = resultado;
         var pontosOrdenados =  vetCres.sort(cres);
-        //console.log('compação de arrays ' + pontosOrdenados);
 
         compararArrays(cartela, pontosOrdenados, la);
         compararArrays(cartela, pontosOrdenados, lb);
@@ -160,7 +158,6 @@ function verificaGanhador(cartela, resultado){
 
 }
 
-//faz a verificação se a cartela já está em bingo
 
 function compararArrays(cartela, a, b) { 
 
@@ -187,7 +184,6 @@ function compararArrays(cartela, a, b) {
     }
 }
 
-//Alterar a cor da linha do bingo
 
 function mudaraLinha(cartela, b) {
 
@@ -196,7 +192,6 @@ function mudaraLinha(cartela, b) {
     }
 }
 
-//Grava em bd a string com os numeros sorteados...
 function salvar_numeros_sorteados()
 {
     var dadosajax = {
@@ -206,7 +201,7 @@ function salvar_numeros_sorteados()
 
     console.log('salvar resultados ' + dadosajax);
 
-    pageurl = 'dados_bd.php';
+    pageurl = 'dados_db.php';
 
     $.ajax({
         url: pageurl,
@@ -215,7 +210,6 @@ function salvar_numeros_sorteados()
         error: function(){
             alert('Erro: gravar resultados!!');
         },
-        //retorna o resultado da pagina para onde enviamos os dados
         success: function(result)
         { 
         

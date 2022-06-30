@@ -1,7 +1,6 @@
 <?php
-	
-	mysql_connect("localhost", "root", "") or die(mysql_error());
-    mysql_select_db("u567057051_perfi") or die(mysql_error());
+$con = new mysqli("localhost", "root", "1234", "sorteio");
+
 
    //recebe os parâmetros
  
@@ -13,7 +12,9 @@
     {
         //insere na BD
         $sql = "INSERT INTO numeros_sorteados(numeros_sorteados, id_sorteio) VALUES('".trim($numeros_sorteados)."','".trim($id_sorteio)."')";
-        $result = mysql_query($sql) or die(mysql_error());
+        $stmt = $con->prepare($sql); 
+        $stmt->execute();
+        $result = $stmt->get_result() or $con->connect_error;
  
         //retorna 1 para no sucesso do ajax saber que foi com inserido sucesso
         echo "1";

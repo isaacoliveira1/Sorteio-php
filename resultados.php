@@ -1,14 +1,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
-		<title>BINGO - Resultados</title>
+		<title>Sorteio - Resultados</title>
 		
 
-		<link href="960.min.css" rel="stylesheet" type="text/css" />
-		<link href="bingo.css" rel="stylesheet" type="text/css" />
+		<link href="css/960.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/sorteio.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" />
 
-		<script type="text/javascript" src="jquery-1.11.3.js"></script>
-		<script type="text/javascript" src="bingo.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/sorteio.js"></script>
 
 	</head>
 
@@ -18,18 +19,19 @@
 
 		<div class="container_12">
 
-			<h2>Sorteios já feitos</h2>
+			<h2>Sorteios realizados</h2>
 
 
-			<table class='container_4'>
+			<table class='table'>
 
 				<tr>
-					<td>Id do sorteio </td><td>Link</td>
+					<th>Sorteio </td>
+					<th>Visualizar</td>
 				</tr>	
 
 				<?php
 
-					$con = new PDO("mysql:host=mysql.hostinger.com.br;dbname=bingo_bd", "root", "");
+					$con = new PDO("mysql:host=localhost;dbname=sorteio", "root", "1234");
 
 					$rs = $con->query("SELECT id_sorteio FROM sorteio");
 					while($row = $rs->fetch(PDO::FETCH_OBJ)){
@@ -38,7 +40,8 @@
 						?>
 
 						<tr>
-							<td><?php echo $id_sorteio; ?> </td><td> <a href="resultado_sorteio.php?id_sort=<?php echo $id_sorteio; ?>"> Link </a></td>
+							<td><?php echo $id_sorteio; ?> </td>
+							<td> <a href="resultado_sorteio.php?id_sort=<?php echo $id_sorteio; ?>" class="btn btn-info"> Visualizar </a></td>
 						</tr>	
 
 
@@ -53,7 +56,7 @@
 			</table>
 
 
-			<p><a href="index.php">Voltar para sorteios</a>/</p>
+			<p><a href="index.php" class="btn btn-success">Voltar para sorteios</a></p>
 		</div>
 
 
